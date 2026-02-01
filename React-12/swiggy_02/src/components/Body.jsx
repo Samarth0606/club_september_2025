@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import RestaurantCard from './RestaurantCard'
 import ApiCalling from './ApiCalling'
+import Search from './Search';
 
 function Body() {
     let restArr = ApiCalling(); // 3s
@@ -30,6 +31,9 @@ function Body() {
             <h1 className='font-bold text-2xl ml-10 mt-4'>Restaurants with online food delivery in Delhi</h1>
             <button onClick={()=>filterTopRatedRestaurant(restArr)} className={isClicked1? 'bg-amber-200 border rounded-xl w-1/12 p-1 ml-20 mt-3 text-xl' : 'border rounded-xl w-1/12 p-1 ml-20 mt-3 text-xl'}>Rating 4.3+</button>
             <button onClick={()=>resetFilter(restArr)} className={isClicked2? 'bg-amber-200 border rounded-xl w-1/12 p-1 ml-20 mt-3 text-xl' : 'border rounded-xl w-1/12 p-1 ml-20 mt-3 text-xl'}>Reset</button>
+        </div>
+        <div className='mx-10'>
+          <Search restArr={restArr} setAllRestaurantArray={setAllRestaurantArray} />
         </div>
         <div className='flex flex-wrap w-10/12 m-auto'>
             <RestaurantCard restArr={allRestaurantArr}/>
