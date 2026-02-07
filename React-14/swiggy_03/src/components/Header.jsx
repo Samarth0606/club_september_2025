@@ -5,8 +5,10 @@ import { IoHelpBuoy } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Header() {
+    const cartItems = useSelector((store)=>store.cart.items)
   return (
     <div>
         <nav className='dark:bg-gray-900 text-white flex text-xl justify-between h-20 items-center px-12'>
@@ -38,7 +40,7 @@ function Header() {
                 <div className='flex mx-4' >
                     <span className='mt-1'> <BsFillCartCheckFill/> </span>
                     <Link to='/cart'> 
-                        <li className='px-2'>Cart</li> 
+                        <li className='px-2'>Cart - {cartItems.length}</li> 
                     </Link>
                 </div>
             </ul>
