@@ -4,7 +4,7 @@ import PropDrilling from './components/PropDrilling'
 function App() {
   return (
     <div>
-      <PropDrilling /> 
+      <PropDrilling />
     </div>
   )
 }
