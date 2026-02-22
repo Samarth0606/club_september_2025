@@ -13,4 +13,18 @@ async function createRestaurant(req,res){
     res.status(201).json(newRestaurant)
 }
 
-module.exports = {fetchRestaurant, createRestaurant}
+async function updateRestaurant(req,res){
+    let {id} = req.params;
+    //  let {name,rating,cuisines,deliveryTime, imageUrl} = req.body;
+    // RestaurantModel.findByIdAndUpdate(id, {name,rating,cuisines,deliveryTime, imageUrl});
+    await RestaurantModel.findByIdAndUpdate(id, req.body);
+    res.status(200).send("Restaurant Updated Successfully");
+}
+
+async function deleteRestaurant(req,res){
+   let {id} = req.params;
+   await RestaurantModel.findByIdAndDelete(id);
+   res.status(200).send("Restaurant Deleted Successfully");
+}
+
+module.exports = {fetchRestaurant,createRestaurant,updateRestaurant, deleteRestaurant}
