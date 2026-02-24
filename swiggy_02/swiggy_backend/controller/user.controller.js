@@ -1,5 +1,6 @@
 const UserModel = require("../model/User.model");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 async function register(req,res){ 
     try {
@@ -33,12 +34,15 @@ async function login(req,res){
                 return res.status(403).json({message: "User credentials not matching"});
             }
             // JWT token
+            var token = jwt.sign({ id: data.id }, 'SECRETKEY');
+            // var token = jwt.sign({ id: data.id }, 'SECRETKEY', { expiresIn: '7h' });
+
             return res.status(200).send({
                 user: {
                     email: data.email,
                     fullName: data.fullName
                 },
-                // accessToken
+                accessToken: token
             })
         }
     } 
